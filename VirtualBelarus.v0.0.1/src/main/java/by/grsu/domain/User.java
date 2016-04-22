@@ -2,6 +2,8 @@ package by.grsu.domain;
 
 public class User {
 
+    private Integer id;
+
     private String name;
 
     private String country;
@@ -11,6 +13,16 @@ public class User {
     private String email;
 
     private String login;
+
+    private Image avatar;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;
@@ -51,5 +63,13 @@ public class User {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Image getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Image avatar) {
+        this.avatar = avatar;
     }
 }
