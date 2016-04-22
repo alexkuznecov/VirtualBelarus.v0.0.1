@@ -10,7 +10,6 @@ public interface UserService {
 
     @Results(value = {
             @Result(property = "name", column = "name"),
-            @Result(property = "surname", column = "surname"),
             @Result(property = "telephone", column = "telephone"),
             @Result(property = "email", column = "email"),
             @Result(property = "login", column = "login")

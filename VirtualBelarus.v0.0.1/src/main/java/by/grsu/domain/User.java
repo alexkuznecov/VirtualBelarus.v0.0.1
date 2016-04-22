@@ -4,29 +4,13 @@ public class User {
 
     private String name;
 
-    private String surname;
+    private String country;
 
-    private String telephone;
+    private String city;
 
     private String email;
 
     private String login;
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
 
     public String getEmail() {
         return email;
@@ -51,5 +35,21 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

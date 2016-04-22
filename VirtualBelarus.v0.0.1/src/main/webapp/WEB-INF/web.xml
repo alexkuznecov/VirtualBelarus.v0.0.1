@@ -14,9 +14,49 @@
         <servlet-class>by.grsu.servlets.LoginServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>tourServlet</servlet-name>
+        <servlet-class>by.grsu.servlets.TourServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>userServlet</servlet-name>
+        <servlet-class>by.grsu.servlets.UserServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>logoutServlet</servlet-name>
+        <servlet-class>by.grsu.servlets.LogoutServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>tourServlet</servlet-name>
+        <url-pattern>/tour/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>tourServlet</servlet-name>
+        <url-pattern>/tours</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>userServlet</servlet-name>
+        <url-pattern>/userinfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>logoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

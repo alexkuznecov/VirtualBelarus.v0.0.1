@@ -1,12 +1,12 @@
 package by.grsu.servlets;
 
+import by.grsu.domain.Token;
 import by.grsu.domain.User;
 import by.grsu.domain.UserCredential;
+import by.grsu.service.TokenService;
 import by.grsu.service.UserCredentialService;
 import by.grsu.service.UserService;
-import by.grsu.service.impl.UserCredentialServiceImpl;
 import org.apache.commons.codec.binary.Base64;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
@@ -15,17 +15,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
 public class LoginServlet extends HttpServlet {;
-
-    @Autowired
-    private UserCredentialServiceImpl userCredentialService;
-
-//    @Autowired
-//    private UserServiceImpl userService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,7 +32,7 @@ public class LoginServlet extends HttpServlet {;
         Pattern patttern = Pattern.compile("(.*):(.*)");
         Matcher matcher = patttern.matcher(normalOut);
 
-        String login = "",password="";
+        String login = "", password = "";
 
         while (matcher.find()) {
             login = matcher.group(1);
@@ -45,26 +40,31 @@ public class LoginServlet extends HttpServlet {;
         }
 
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-        UserCredentialService userCredentialService = (UserCredentialService)ctx.getBean("userCredentialService");
-        UserService userService = (UserService)ctx.getBean("userService");
+        UserCredentialService userCredentialService = (UserCredentialService) ctx.getBean("userCredentialService");
+        UserService userService = (UserService) ctx.getBean("userService");
+        TokenService tokenService = (TokenService) ctx.getBean("tokenService");
 
-        UserCredential userCredential = userCredentialService.getRegisteredUserCredential(login,password);
-
+        UserCredential userCredential = userCredentialService.getRegisteredUserCredential(login, password);
+        User registeredUser;
         if (userCredential != null) {
-            User registeredUser = userService.getUserByLogin(userCredential.getLogin());
-            String str = registeredUser.getName();
+            registeredUser = userService.getUserByLogin(userCredential.getLogin());
         } else {
-            int vasja = 44;
-            vasja++;
+            registeredUser = null;
         }
 
-        int george = 12;
-        george++;
-        resp.setHeader("Head","hjhkhjkh");
-
-
+        if (registeredUser != null) {
+            Token tg = new Token();
+            tg.generateToken(registeredUser.getName(), registeredUser.getEmail());
+            tokenService.insertToken(tg.getToken(), registeredUser.getLogin());
+            resp.setHeader("token", tg.getToken().toString());
+            resp.setContentType("text/html");
+            PrintWriter pw = resp.getWriter();
+            pw.write(registeredUser.getName() + "?" + registeredUser.getSurname() + "?"
+                    + registeredUser.getTelephone() + "?" + registeredUser.getEmail() + "?" + registeredUser.getLogin());
+        } else {
+            resp.sendError(200, "Not found");
+        }
     }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
