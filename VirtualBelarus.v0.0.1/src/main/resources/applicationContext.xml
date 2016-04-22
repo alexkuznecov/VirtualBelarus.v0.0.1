@@ -34,6 +34,11 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
 
+    <bean id="imageService" class="org.mybatis.spring.mapper.MapperFactoryBean" >
+        <property name="mapperInterface" value="by.grsu.service.ImageService" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
