@@ -15,4 +15,7 @@ public interface TokenService {
 
     @Delete("delete into tokens where login = #{login}")
     void deleteToken(@Param(value = "login") String login);
+
+    @Select("select login from tokens where token = #{token}")
+    String getLoginByToken(@Param(value = "token") Integer token);
 }

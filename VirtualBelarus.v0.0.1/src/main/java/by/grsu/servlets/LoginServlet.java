@@ -3,10 +3,12 @@ package by.grsu.servlets;
 import by.grsu.domain.Token;
 import by.grsu.domain.User;
 import by.grsu.domain.UserCredential;
+import by.grsu.service.ImageService;
 import by.grsu.service.TokenService;
 import by.grsu.service.UserCredentialService;
 import by.grsu.service.UserService;
 import org.apache.commons.codec.binary.Base64;
+import org.json.JSONObject;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,6 +44,7 @@ public class LoginServlet extends HttpServlet {;
         UserCredentialService userCredentialService = (UserCredentialService) ctx.getBean("userCredentialService");
         UserService userService = (UserService) ctx.getBean("userService");
         TokenService tokenService = (TokenService) ctx.getBean("tokenService");
+        ImageService imageService = (ImageService) ctx.getBean("imageService");
 
         UserCredential userCredential = userCredentialService.getRegisteredUserCredential(login, password);
         User registeredUser;
@@ -58,9 +60,20 @@ public class LoginServlet extends HttpServlet {;
             tokenService.insertToken(tg.getToken(), registeredUser.getLogin());
             resp.setHeader("token", tg.getToken().toString());
             resp.setContentType("text/html");
-            PrintWriter pw = resp.getWriter();
-            pw.write(registeredUser.getName() + "?" + registeredUser.getSurname() + "?"
-                    + registeredUser.getTelephone() + "?" + registeredUser.getEmail() + "?" + registeredUser.getLogin());
+            resp.setCharacterEncoding("ISO-8859-1");
+            JSONObject user = new JSONObject();
+            user.put("id", registeredUser.getId());
+            user.put("name", registeredUser.getName());
+            user.put("country", registeredUser.getCountry());
+            user.put("city", registeredUser.getCity());
+            user.put("email", registeredUser.getEmail());
+            JSONObject image = new JSONObject();
+            image.put("id", registeredUser.getAvatar().getId());
+            image.put("url", registeredUser.getAvatar().getUrl());
+            image.put("path",registeredUser.getAvatar().getPath());
+            user.put("image", image);
+            user.write(resp.getWriter());
+            System.out.println(user.toString());
         } else {
             resp.sendError(200, "Not found");
         }

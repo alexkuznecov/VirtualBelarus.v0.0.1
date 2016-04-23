@@ -9,13 +9,14 @@ public interface UserService {
     @Results(value = {
             @Result(property = "id", column = "id"),
             @Result(property = "name", column = "name"),
-            @Result(property = "country", column = "city"),
+            @Result(property = "country", column = "country"),
+            @Result(property = "city", column = "city"),
             @Result(property = "email", column = "email"),
             @Result(property = "login", column = "login"),
             @Result(property = "avatar", column = "avatarId", javaType = Image.class,
             one = @One(select = "by.grsu.service.ImageService.getImageById"))
     })
-    @Select("select name,surname,telephone,email,login from users where login =#{login}")
+    @Select("select id,name,country,city,email,login,avatarId from users where login =#{login}")
     User getUserByLogin(@Param(value = "login") String login);
 
 }
