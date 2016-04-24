@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 public interface ImageService {
 
     @Results(value = {
-            @Result(property = "id", column = "id"),
+            @Result(property = "id", column = "id", id = true),
             @Result(property = "url", column = "url"),
             @Result(property = "path", column = "path")
     })
