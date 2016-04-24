@@ -54,6 +54,21 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
 
+    <bean id="scenaImageService" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="by.grsu.service.ScenaImageService" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <bean id="transitionHotSpotService" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="by.grsu.service.TransitionHotSpotService" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <bean id="sceneService" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="by.grsu.service.SceneService" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">

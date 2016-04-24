@@ -18,7 +18,7 @@ public class Scene {
 
     private List<InfoHotSpot> hotSpots;
 
-    private List<Image> images;
+    private List<SceneImage> images;
 
     public Integer getId() {
         return id;
@@ -76,11 +76,11 @@ public class Scene {
         this.hotSpots = hotSpots;
     }
 
-    public List<Image> getImages() {
+    public List<SceneImage> getImages() {
         return images;
     }
 
-    public void setImages(List<Image> images) {
+    public void setImages(List<SceneImage> images) {
         this.images = images;
     }
 }

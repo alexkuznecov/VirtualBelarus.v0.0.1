@@ -4,7 +4,9 @@ public class TransitionHotSpot {
 
     private Integer id;
 
-    private Scene scene;
+    private Integer sceneId;
+
+    private InfoHotSpot infoHotSpot;
 
     public Integer getId() {
         return id;
@@ -14,11 +16,19 @@ public class TransitionHotSpot {
         this.id = id;
     }
 
-    public Scene getScene() {
-        return scene;
+    public Integer getSceneId() {
+        return sceneId;
     }
 
-    public void setScene(Scene scene) {
-        this.scene = scene;
+    public void setSceneId(Integer sceneId) {
+        this.sceneId = sceneId;
+    }
+
+    public InfoHotSpot getHotSpot() {
+        return infoHotSpot;
+    }
+
+    public void setHotSpot(InfoHotSpot infohotSpot) {
+        this.infoHotSpot = infohotSpot;
     }
 }
