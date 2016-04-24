@@ -1,4 +1,4 @@
 package by.grsu.service;
 
-public class TransitionHotSpotService {
+public interface TransitionHotSpotService {
 }

@@ -16,4 +16,8 @@ public class Token {
     public Integer getToken() {
         return token;
     }
+
+    public void setToken(Integer token) {
+        this.token = token;
+    }
 }

@@ -20,6 +20,11 @@
     </servlet>
 
     <servlet>
+        <servlet-name>toursServlet</servlet-name>
+        <servlet-class>by.grsu.servlets.ToursServlet</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>userServlet</servlet-name>
         <servlet-class>by.grsu.servlets.UserServlet</servlet-class>
     </servlet>
@@ -45,7 +50,7 @@
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>tourServlet</servlet-name>
+        <servlet-name>toursServlet</servlet-name>
         <url-pattern>/tours</url-pattern>
     </servlet-mapping>
 

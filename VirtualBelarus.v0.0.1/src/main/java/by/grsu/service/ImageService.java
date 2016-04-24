@@ -16,12 +16,4 @@ public interface ImageService {
     @Select("select id,url,path from image where id = #{id}")
     Image  getImageById(@Param(value = "id") Integer id);
 
-    @Results(value = {
-            @Result(property = "id", column = "id"),
-            @Result(property = "url", column = "url"),
-            @Result(property = "path", column = "path")
-    })
-    @Select("select id,url,path from image where avatarId = {#id}")
-    Image  getImageByAvatarId(@Param(value = "id") Integer id);
-
 }

@@ -1,4 +1,4 @@
 package by.grsu.service;
 
-public class LocationService {
+public interface LocationService {
 }
