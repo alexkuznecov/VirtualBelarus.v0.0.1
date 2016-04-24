@@ -49,6 +49,11 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
 
+    <bean id="infoHotSpotService" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="by.grsu.service.InfoHotSpotSerivce" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
