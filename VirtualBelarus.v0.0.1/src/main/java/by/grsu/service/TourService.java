@@ -21,6 +21,21 @@ public interface TourService {
             @Result(property = "scenes", column = "id", javaType = List.class,
                 many = @Many(select = "by.grsu.service.SceneService.getScenesByTourId", fetchType = FetchType.LAZY))
     })
+    @Select("select * from tour where id = #{id}")
     Tour getTourById(@Param(value = "id") Integer id);
+
+    @Results(value = {
+            @Result(property = "id", column = "id", id = true),
+            @Result(property = "title", column = "title"),
+            @Result(property = "about", column = "about"),
+            @Result(property = "location", column = "locationId", javaType = Location.class,
+                    one = @One(select = "by.grsu.service.LocationService.getLocationById", fetchType = FetchType.LAZY)),
+            @Result(property = "preview", column = "previewId", javaType = Image.class,
+                    one = @One(select = "by.grsu.service.ImageService.getImageById", fetchType = FetchType.LAZY)),
+            @Result(property = "scenes", column = "id", javaType = List.class,
+                    many = @Many(select = "by.grsu.service.SceneService.getScenesByTourId", fetchType = FetchType.LAZY))
+    })
+    @Select("select * from tour")
+    List<Tour> getTours();
 
 }
